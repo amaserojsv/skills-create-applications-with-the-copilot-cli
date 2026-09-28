@@ -8,7 +8,7 @@
  *   20 / 5 = 4
  */
 
-const { add, subtract, multiply, divide } = require("../calculator");
+const { add, subtract, multiply, divide, modulo, exponentiate, squareRoot } = require("../calculator");
 
 describe("add", () => {
   test("adds two positive numbers (2 + 3 = 5)", () => {
@@ -96,5 +96,43 @@ describe("divide", () => {
   // Edge case: division by zero must throw an error.
   test("throws an error when dividing by zero", () => {
     expect(() => divide(20, 0)).toThrow("Division by zero is not allowed.");
+  });
+});
+
+describe("modulo", () => {
+  test("returns the remainder for positive numbers", () => {
+    expect(modulo(10, 3)).toBe(1);
+  });
+
+  test("returns zero when evenly divisible", () => {
+    expect(modulo(20, 5)).toBe(0);
+  });
+
+  test("throws an error when modulo by zero", () => {
+    expect(() => modulo(10, 0)).toThrow("Modulo by zero is not allowed.");
+  });
+});
+
+describe("exponentiate", () => {
+  test("raises a number to a positive integer power", () => {
+    expect(exponentiate(2, 4)).toBe(16);
+  });
+
+  test("raises a number to a fractional power", () => {
+    expect(exponentiate(9, 0.5)).toBeCloseTo(3);
+  });
+});
+
+describe("squareRoot", () => {
+  test("returns the square root of a positive number", () => {
+    expect(squareRoot(25)).toBe(5);
+  });
+
+  test("returns the square root of zero", () => {
+    expect(squareRoot(0)).toBe(0);
+  });
+
+  test("throws an error for a negative number", () => {
+    expect(() => squareRoot(-4)).toThrow("Square root of a negative number is not allowed.");
   });
 });
